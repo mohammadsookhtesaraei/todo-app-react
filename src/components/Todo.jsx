@@ -4,6 +4,7 @@ import { v4 } from "uuid";
 
 import AddTodoInput from "./AddTodoInput";
 import TodoList from "./TodoList";
+import Modal from "./Modal";
 
 
 
@@ -15,6 +16,7 @@ const Todo = () => {
     });
 
     const [todoList,setTodoList]=useState([]);
+    const [modal,setModal]=useState(false);
     
     const todoHandler=(event)=>{
     const {value,name}=event.target;
@@ -24,7 +26,7 @@ const Todo = () => {
    const addtodoHandler=()=>{
 
     if(!todo.todo.trim()){
-        alert("please insert a todo!");
+        setModal(true);
         return
     }
 
@@ -47,19 +49,20 @@ const Todo = () => {
     setTodoList(newTodoListAfterEdit)
    };
 
-   console.log(todoList);
+
 
 
     return (
         <>
-            <div className="container max-w-7xl mx-auto h-screen py-1">
-                <div className="bg-blue-500 w-7/12 mx-auto mt-5 rounded p-10 shadow-sm shadow-amber-50">
-                  <h1 className="text-3xl font-bold text-center">Todo App</h1>
+            <div className="container max-w-7xl mx-auto h-screen">
+                <div className="bg-blue-500 sm:w-7/12 mx-auto sm:mt-5 rounded  shadow-sm shadow-amber-50">
+                  <h1 className="pt-4 sm:text-3xl font-bold text-center">Todo App</h1>
                   <div className="h-[1px] bg-white mx-auto w-3/12 mt-2 "></div>
                   <AddTodoInput todo={todo.todo} tHandler={todoHandler} addtodoHandler={addtodoHandler}/>
                   <TodoList list={todoList} deleteHandler={deleteHandler} editHandler={editHandler}/>
                 </div>
-
+               {modal && <Modal  setModal={setModal}/>}
+                
             </div>
         </>
     );
