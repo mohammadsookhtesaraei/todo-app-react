@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { v4 } from "uuid";
+
+
 import AddTodoInput from "./AddTodoInput";
+import TodoList from "./TodoList";
 
 
 
@@ -18,6 +21,7 @@ const Todo = () => {
    };
 
    const addtodoHandler=()=>{
+
     if(!todo.todo.trim()){
         alert("please insert a todo!");
         return
@@ -31,7 +35,7 @@ const Todo = () => {
     });
    };
 
-   console.log(todoList);
+
 
     return (
         <div>
@@ -40,6 +44,7 @@ const Todo = () => {
                   <h1 className="text-3xl font-bold text-center">Todo App</h1>
                   <div className="h-[1px] bg-white mx-auto w-3/12 mt-2 "></div>
                   <AddTodoInput todo={todo.todo} tHandler={todoHandler} addtodoHandler={addtodoHandler}/>
+                  <TodoList list={todoList}/>
                 </div>
 
             </div>
