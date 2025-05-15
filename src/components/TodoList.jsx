@@ -1,12 +1,12 @@
 import ItemList from "./ItemList";
 
 
-const TodoList = ({list}) => {
+const TodoList = ({list,deleteHandler,editHandler}) => {
     return (
         <div className="mt-3 flex items-center p-10">
-            {list.length > 0 ? (<ul>
+            {list.length > 0 ? (<ul className="w-full">
              {list.map((item)=>(
-                 <ItemList key={item.id} data={item}/>
+                 <ItemList key={item.id} data={item} deleteHandler={deleteHandler} editHandler={editHandler}/>
              ))}
             </ul>)
             

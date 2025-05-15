@@ -7,6 +7,7 @@ import TodoList from "./TodoList";
 
 
 
+
 const Todo = () => {
     const [todo,setTodo]=useState({
         id:"",
@@ -17,7 +18,7 @@ const Todo = () => {
     
     const todoHandler=(event)=>{
     const {value,name}=event.target;
-    setTodo((prevTodo)=>({...prevTodo,[name]:value}));
+    setTodo((prevTodo)=>({...prevTodo,[name]:value.toLowerCase()}));
    };
 
    const addtodoHandler=()=>{
@@ -34,21 +35,33 @@ const Todo = () => {
         todo:""
     });
    };
+   
 
+   const deleteHandler=(id)=>{
+    const newTodoList=todoList.filter((item)=> item.id !== id);
+    setTodoList(newTodoList)
+   };
+
+   const editHandler=(id,newTodo)=>{
+    const newTodoListAfterEdit=todoList.map((item)=> item.id === id ? {...item,todo:newTodo}:item);
+    setTodoList(newTodoListAfterEdit)
+   };
+
+   console.log(todoList);
 
 
     return (
-        <div>
-            <div className="container max-w-7xl mx-auto h-screen">
+        <>
+            <div className="container max-w-7xl mx-auto h-screen py-1">
                 <div className="bg-blue-500 w-7/12 mx-auto mt-5 rounded p-10 shadow-sm shadow-amber-50">
                   <h1 className="text-3xl font-bold text-center">Todo App</h1>
                   <div className="h-[1px] bg-white mx-auto w-3/12 mt-2 "></div>
                   <AddTodoInput todo={todo.todo} tHandler={todoHandler} addtodoHandler={addtodoHandler}/>
-                  <TodoList list={todoList}/>
+                  <TodoList list={todoList} deleteHandler={deleteHandler} editHandler={editHandler}/>
                 </div>
 
             </div>
-        </div>
+        </>
     );
 }
 
