@@ -5,7 +5,7 @@ import { MdDone } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 
 const ItemList = ({data:{id,todo,date},deleteHandler,editHandler}) => {
-    console.log(date);
+ 
  
     const [newTodo,setNewTodo]=useState(todo);
     const [isEditing,setIsEditing]=useState(false);
