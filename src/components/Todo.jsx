@@ -29,7 +29,9 @@ const Todo = () => {
         id:"",
         todo:""
     });
-   }
+   };
+
+   console.log(todoList);
 
     return (
         <div>
@@ -37,7 +39,7 @@ const Todo = () => {
                 <div className="bg-blue-500 w-7/12 mx-auto mt-5 rounded p-10 shadow-sm shadow-amber-50">
                   <h1 className="text-3xl font-bold text-center">Todo App</h1>
                   <div className="h-[1px] bg-white mx-auto w-3/12 mt-2 "></div>
-                  <AddTodoInput/>
+                  <AddTodoInput todo={todo.todo} tHandler={todoHandler} addtodoHandler={addtodoHandler}/>
                 </div>
 
             </div>
